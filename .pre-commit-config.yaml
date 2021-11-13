@@ -1,15 +1,36 @@
 repos:
 
+- repo: https://github.com/tekwizely/pre-commit-golang
+  rev: v1.0.0-beta.4
+  hooks:
+    - id: go-mod-tidy
+      name: golang tidying
+    - id: golangci-lint-repo-mod
+      name: golang linting
+
+- repo: https://github.com/ambv/black
+  rev: 21.10b0
+  hooks:
+    - id: black
+      name: python linting
+      language_version: python3
+
+- repo: https://github.com/thlorenz/doctoc
+  rev: v2.1.0
+  hooks:
+    - id: doctoc
+      name: update toc
+
 - repo: https://github.com/igorshubovych/markdownlint-cli
   rev: v0.29.0
   hooks:
-  - id: markdownlint
-    name: markdown linting
+    - id: markdownlint
+      name: markdown linting
 
 - repo: https://github.com/yelp/detect-secrets.git
   rev: v1.1.0
   hooks:
-  -   id: detect-secrets
+    - id: detect-secrets
       name: detect secrets
       args: ['--baseline', '.secrets.baseline']
       exclude: .*/go.sum

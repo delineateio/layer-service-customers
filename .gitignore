@@ -1,6 +1,12 @@
 .terraform/
 .vagrant/
 .vscode/
+certs/
+data/
+build/
 
 *.env
 *.todo
+*.pem
+brewfile.lock.json
+dependencies.txt

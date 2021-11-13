@@ -1,0 +1,14 @@
+---
+server:
+  mode: release
+  host: 0.0.0.0
+  port: 1102
+database:
+  host: db
+  dbname: postgres
+  user: postgres
+  password: postgres # pragma: allowlist secret
+  port: '5432'
+  sslmode: disable
+logging:
+  level: warn

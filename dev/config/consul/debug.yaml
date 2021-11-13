@@ -1,0 +1,14 @@
+---
+server:
+  mode: debug
+  host: localhost
+  port: 1102
+database:
+  host: localhost
+  dbname: postgres
+  user: postgres
+  password: postgres # pragma: allowlist secret
+  port: '5432'
+  sslmode: disable
+logging:
+  level: debug

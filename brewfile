@@ -1,0 +1,7 @@
+brew "go"
+brew "golangci-lint"
+brew "hashicorp/tap/consul"
+brew "buildpacks/tap/pack"
+brew "pyenv"
+brew "pyenv-virtualenv"
+brew "libpq", link: true

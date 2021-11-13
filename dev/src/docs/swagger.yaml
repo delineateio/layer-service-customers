@@ -1,0 +1,114 @@
+basePath: /
+definitions:
+  routes.Customer:
+    properties:
+      dob:
+        type: string
+      forename:
+        type: string
+      id:
+        type: integer
+      surname:
+        type: string
+    required:
+    - dob
+    - forename
+    - surname
+    type: object
+  routes.Customers:
+    properties:
+      customers:
+        items:
+          $ref: '#/definitions/routes.Customer'
+        type: array
+    type: object
+host: localhost:1102
+info:
+  contact:
+    email: support@delineate.io
+    name: API Support
+    url: http://www.delineate.io/support
+  description: Service for managing customers
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://www.delineate.io/terms/
+  title: Customer Service
+  version: "1.0"
+paths:
+  /customer:
+    post:
+      consumes:
+      - application/json
+      description: Creates a new customer
+      parameters:
+      - description: customer
+        in: body
+        name: customer
+        required: true
+        schema:
+          $ref: '#/definitions/routes.Customer'
+      produces:
+      - text/plain
+      responses:
+        "201":
+          description: Customer created
+        "400":
+          description: Bad request
+        "409":
+          description: Customer exists
+        "500":
+          description: Internal error
+      summary: Create Customer
+  /customer/{id}:
+    get:
+      consumes:
+      - text/plain
+      description: Returns a single customer
+      parameters:
+      - description: Customer ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Customer returned
+          schema:
+            $ref: '#/definitions/routes.Customer'
+        "404":
+          description: Customer not found
+        "500":
+          description: Internal error
+      summary: Get Customer
+  /customers:
+    get:
+      consumes:
+      - text/plain
+      description: gets a list of all the customers
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Customers returned
+          schema:
+            $ref: '#/definitions/routes.Customers'
+        "500":
+          description: Internal error
+      summary: Get Customers
+  /healthz:
+    get:
+      consumes:
+      - text/plain
+      description: checks the health of the service
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: healthy
+      summary: Health Check
+schemes:
+- http
+swagger: "2.0"

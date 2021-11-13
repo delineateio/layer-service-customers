@@ -1,0 +1,6 @@
+.vscode/
+certs/
+
+__debug_bin
+*.todo
+.todo

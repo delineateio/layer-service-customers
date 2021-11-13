@@ -1,0 +1,172 @@
+{
+    "schemes": [
+        "http"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "Service for managing customers",
+        "title": "Customer Service",
+        "termsOfService": "http://www.delineate.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.delineate.io/support",
+            "email": "support@delineate.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:1102",
+    "basePath": "/",
+    "paths": {
+        "/customer": {
+            "post": {
+                "description": "Creates a new customer",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "summary": "Create Customer",
+                "parameters": [
+                    {
+                        "description": "customer",
+                        "name": "customer",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.Customer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Customer created"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "409": {
+                        "description": "Customer exists"
+                    },
+                    "500": {
+                        "description": "Internal error"
+                    }
+                }
+            }
+        },
+        "/customer/{id}": {
+            "get": {
+                "description": "Returns a single customer",
+                "consumes": [
+                    "text/plain"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get Customer",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Customer ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Customer returned",
+                        "schema": {
+                            "$ref": "#/definitions/routes.Customer"
+                        }
+                    },
+                    "404": {
+                        "description": "Customer not found"
+                    },
+                    "500": {
+                        "description": "Internal error"
+                    }
+                }
+            }
+        },
+        "/customers": {
+            "get": {
+                "description": "gets a list of all the customers",
+                "consumes": [
+                    "text/plain"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get Customers",
+                "responses": {
+                    "200": {
+                        "description": "Customers returned",
+                        "schema": {
+                            "$ref": "#/definitions/routes.Customers"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal error"
+                    }
+                }
+            }
+        },
+        "/healthz": {
+            "get": {
+                "description": "checks the health of the service",
+                "consumes": [
+                    "text/plain"
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "summary": "Health Check",
+                "responses": {
+                    "200": {
+                        "description": "healthy"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "routes.Customer": {
+            "type": "object",
+            "required": [
+                "dob",
+                "forename",
+                "surname"
+            ],
+            "properties": {
+                "dob": {
+                    "type": "string"
+                },
+                "forename": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "surname": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.Customers": {
+            "type": "object",
+            "properties": {
+                "customers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/routes.Customer"
+                    }
+                }
+            }
+        }
+    }
+}
