@@ -52,6 +52,10 @@ func GetString(key string) string {
 	return viper.GetString(key)
 }
 
+func GetInt(key string) int {
+	return viper.GetInt(key)
+}
+
 func GetStringOrDefault(key, value string) string {
 	logging.Debug(fmt.Sprintf("requested '%s' config key", key))
 

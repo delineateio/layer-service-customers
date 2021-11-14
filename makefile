@@ -9,10 +9,12 @@ certs_dir:=./certs
 dc_name:="dc1"
 python_version:="3.9.1"
 stack_file:=./ops/local/stack.yaml
-debug_config:=./dev/config/consul/debug.yaml
-release_config:=./dev/config/consul/release.yaml
+services_config:=./dev/config/consul/services.yaml
+up_config:=./dev/config/consul/up.yaml
 current:=$(shell cat .python-version)
 repo:=$(shell basename $(CURDIR))
+rebuild:=false
+scale:=3
 
 # ------------------------------------------------------------------------
 # private targets
@@ -45,19 +47,29 @@ repo:=$(shell basename $(CURDIR))
 	@git add .
 	@-pre-commit
 
---debug:
+--services:
 	@echo
-	@docker compose -f "$(stack_file)" up --no-color --quiet-pull --force-recreate -d
+	@docker compose -f "$(stack_file)" up \
+		--no-color \
+		--no-recreate \
+		--quiet-pull \
+		--detach
 	@echo
-	@consul kv put "services/customers" @$(debug_config)
+	@consul kv put "services/customers" @$(services_config)
 
---release:
+--up:
+    ifeq ($(rebuild), true)
+		@echo
+		@pack build delineateio/customers -q --builder gcr.io/buildpacks/builder:v1 -p ./dev 1> /dev/null
+    endif
 	@echo
-	@pack build delineateio/customers -q --builder gcr.io/buildpacks/builder:v1 -p ./dev 1> /dev/null
+	@docker compose --profile full -f "$(stack_file)" up \
+		--no-color \
+		--scale customers=$(scale) \
+		--quiet-pull \
+		--detach
 	@echo
-	@docker compose --profile release -f "$(stack_file)" up --scale customers=3 --quiet-pull --force-recreate -d
-	@echo
-	@consul kv put "services/customers" @$(release_config)
+	@consul kv put "services/customers" @$(up_config)
 
 --clean:
 	@psql -h "localhost" -U "postgres" -c "DELETE FROM customers;" 1> /dev/null
@@ -87,13 +99,16 @@ build:
 	@echo
 	@cd ./dev/src; go build -o ../../build/customers
 
-debug: --debug ps
+services: --services ps
 
-release: --release ps
+up: --up ps
 
 ps:
 	@echo
-	@docker ps -a --format="table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.State}}\t{{.Networks}}" -a
+	@docker ps \
+		--format="table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.State}}\t{{.Networks}}" \
+		--filter 'network=local_consul' \
+		--all
 
 tests: --clean
 	@echo

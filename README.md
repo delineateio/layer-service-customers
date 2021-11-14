@@ -120,7 +120,7 @@ To run, test and debug the `go` service natively (not inside `docker`) it is nec
 * `consul` running on port `8500`
 * `postgres` running on port `5432`
 
-Running`make debug` will stand up the required backend services.
+Running`make services` will stand up the required backend services.
 
 When the services are running it is possible to browse the [Consul UI](http://localhost:8500/ui/).  You can subsequently use `make ps` to show the running containers.
 

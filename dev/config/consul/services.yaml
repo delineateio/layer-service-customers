@@ -1,14 +1,21 @@
 ---
 server:
+  scheme: http
+  prefix: customers
+  name: customer-service
   mode: debug
   host: localhost
   port: 1102
+discovery:
+  interval: "3s"
+  timeout: "2s"
+  deregister: "10s"
 database:
   host: localhost
   dbname: postgres
   user: postgres
   password: postgres # pragma: allowlist secret
-  port: '5432'
+  port: "5432"
   sslmode: disable
 logging:
   level: debug

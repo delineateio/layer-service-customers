@@ -3,9 +3,8 @@ package main
 import (
 	"delineate.io/customers/src/config"
 	"delineate.io/customers/src/database"
+	"delineate.io/customers/src/discovery"
 	_ "delineate.io/customers/src/docs"
-
-	//	"delineate.io/customers/src/messaging"
 	"delineate.io/customers/src/server"
 )
 
@@ -27,5 +26,6 @@ import (
 func main() {
 	config.Initialize()
 	database.Initialize()
+	discovery.Initialize()
 	server.Start()
 }

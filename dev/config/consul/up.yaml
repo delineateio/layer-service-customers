@@ -1,8 +1,15 @@
 ---
 server:
+  scheme: http
+  prefix: customers
+  name: customer-service
   mode: release
   host: 0.0.0.0
   port: 1102
+discovery:
+  interval: "3s"
+  timeout: "2s"
+  deregister: "10s"
 database:
   host: db
   dbname: postgres
