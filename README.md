@@ -128,7 +128,20 @@ In addition `psql` is installed then it's possible to connect to the database us
 
 ### Running in Docker
 
-One of the key advantages of using centralised and dynamic configuration is that config is updated across multiple services.  To demonstrate this a `make` target has been provided that instantiates three instances of the *customers* service in Docker behind an [nginx](https://www.nginx.com/) load balancer.  To do this run `make release`.  The *customers* service is packaged using [Build Packs](https://buildpacks.io/) so there is no explicit `Dockerfile`.
+One of the key advantages of using centralised and dynamic configuration is that config is updated across multiple services.  To demonstrate this a `make` target has been provided that instantiates three instances of the *customers* service in Docker behind an [nginx](https://www.nginx.com/) load balancer.
+
+```shell
+# builds the image, scales to 3 by default
+make build=true up
+
+# doesn't rebuild the image, scales up 5
+make scale=5 up
+
+# make scales back down to 2
+make scale=2 up
+```
+
+The *customers* service is packaged using [Build Packs](https://buildpacks.io/) so there is no explicit `Dockerfile`.
 
 ### Testing
 
@@ -144,8 +157,8 @@ This section lists
 | `make init` | Full initialises the local development environment.|
 | `make graph` | Writes a file called `graph.txt` which contains the `go` dependency tree for inspection. |
 | `make build` | Builds the application binary for the application in `./build`. |
-| `make debug` | Creates the backend services to enable the application to be run natively. |
-| `make release` | Deploys the application into Docker and scales to three instances. |
+| `make services` | Creates the backend services to enable the application to be run natively. |
+| `make up` | Deploys the application into Docker and scales to three instances. |
 | `make ps` | Lists the primary info and status of the docker containers. |
 | `make tests` | Runs the test feature files that have been provided in `./tests`. |
 | `make rename` | Only required in exceptional cased to rename the repo and update `readme` badges. |

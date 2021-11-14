@@ -13,7 +13,7 @@ services_config:=./dev/config/consul/services.yaml
 up_config:=./dev/config/consul/up.yaml
 current:=$(shell cat .python-version)
 repo:=$(shell basename $(CURDIR))
-rebuild:=false
+build:=false
 scale:=3
 
 # ------------------------------------------------------------------------
@@ -58,7 +58,7 @@ scale:=3
 	@consul kv put "services/customers" @$(services_config)
 
 --up:
-    ifeq ($(rebuild), true)
+    ifeq ($(build), true)
 		@echo
 		@pack build delineateio/customers -q --builder gcr.io/buildpacks/builder:v1 -p ./dev 1> /dev/null
     endif
