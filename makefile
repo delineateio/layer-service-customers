@@ -30,7 +30,7 @@ scale:=3
 	@pyenv virtualenv -q -f $(python_version) $(repo) 1> /dev/null
 	@pyenv local $(repo)
 	@pip install -q --upgrade pip
-	@pip install -qr requirements.txt
+	@pip install -Uqr requirements.txt
 
 --certs:
 	@echo
