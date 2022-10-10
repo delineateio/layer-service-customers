@@ -10,3 +10,4 @@ build/
 *.pem
 brewfile.lock.json
 dependencies.txt
+.DS_Store
