@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [{
+        "label": "Update Customers Docs",
+        "command": "/Users/jonathan/go/bin/swag",
+        "args": ["init", "-d", "${workspaceFolder}/src", "-g", "main.go", "-o", "${workspaceFolder}/src/docs"],
+        "type": "process",
+        "group": "build",
+        "presentation": {
+            "reveal": "silent",
+            "panel": "shared"
+        }
+    },
+    {
+        "label": "Reload Consul Configuration",
+        "command": "zsh",
+        "args": ["${workspaceFolder}/config/consul/config.sh"],
+        "type": "process",
+        "group": "build",
+        "presentation": {
+            "reveal": "silent",
+            "panel": "shared"
+        }
+    }]
+}

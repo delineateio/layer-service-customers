@@ -1,6 +1,5 @@
 .terraform/
 .vagrant/
-.vscode/
 certs/
 data/
 build/

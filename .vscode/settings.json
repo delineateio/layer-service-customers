@@ -1,0 +1,28 @@
+{
+    "cSpell.words": [
+        "acks",
+        "dbname",
+        "doctoc",
+        "ggshield",
+        "gitguardian",
+        "godoc",
+        "golangci",
+        "gomod",
+        "gonic",
+        "gorm",
+        "healthcheck",
+        "heimdall",
+        "isready",
+        "libpq",
+        "markdownlint",
+        "microservices",
+        "mitchellh",
+        "nolint",
+        "psql",
+        "pyenv",
+        "sslmode",
+        "swaggo",
+        "virtualenv",
+        "xhyve"
+    ]
+}

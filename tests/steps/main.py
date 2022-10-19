@@ -1,7 +1,7 @@
-from behave import given, when, then
 import requests
 import json
 import os
+from behave import given, when, then
 
 
 @given("protocol {protocol}")
@@ -55,12 +55,16 @@ def get_value(context, attribute, default):
 def request_body(context, request):
 
     dir = os.path.dirname(__file__)
-    file_name = os.path.join(dir, "../requests", request)
-    print(file_name)
-    file = open(file_name, "r")
-    body = json.loads(file.read())
-    context.request_body = body
-    print(context.request_body)
+    try:
+        file_name = os.path.join(dir, "../requests", request)
+        print(file_name)
+        file = open(file_name, "r")
+        body = json.loads(file.read())
+
+        context.request_body = body
+        print(context.request_body)
+    finally:
+        file.close()
 
 
 def get_request_url(context):
