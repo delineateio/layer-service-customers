@@ -6,31 +6,26 @@ from behave import given, when, then
 
 @given("protocol {protocol}")
 def protocol(context, protocol):
-
     setattr(context, "protocol", protocol)
 
 
 @given("host {host}")
 def host(context, host):
-
     setattr(context, "host", host)
 
 
 @given("port {port}")
 def port(context, port):
-
     setattr(context, "port", port)
 
 
 @given("path {path}")
 def path(context, path):
-
     setattr(context, "path", path)
 
 
 @given("header {key} as {value}")
 def header_key_as_value(context, key, value):
-
     if not hasattr(context, "request_headers"):
         context.request_headers = {}
 
@@ -39,7 +34,6 @@ def header_key_as_value(context, key, value):
 
 
 def get_value(context, attribute, default):
-
     env_name = "TESTS_" + attribute.upper()
 
     if hasattr(context, attribute):
@@ -53,7 +47,6 @@ def get_value(context, attribute, default):
 
 @given("request {request}")
 def request_body(context, request):
-
     dir = os.path.dirname(__file__)
     try:
         file_name = os.path.join(dir, "../requests", request)
@@ -68,7 +61,6 @@ def request_body(context, request):
 
 
 def get_request_url(context):
-
     protocol = get_value(context, "protocol", "http")
     host = get_value(context, "host", "localhost")
     port = get_value(context, "port", "8080")
@@ -80,7 +72,6 @@ def get_request_url(context):
 
 @when("method {verb}")
 def method_verb(context, verb):
-
     context.request_method = verb
     print("method: " + context.request_method)
 
@@ -111,6 +102,5 @@ def method_verb(context, verb):
 
 @then("status {code}")
 def status_code(context, code):
-
     print("expected: " + str(code))
     assert str(context.response_code) == str(code)
