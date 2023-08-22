@@ -31,7 +31,7 @@ repos:
       name: markdown linting
 
 - repo: https://github.com/gitguardian/ggshield
-  rev: v1.17.3
+  rev: v1.18.0
   hooks:
     - id: ggshield
       name: gitguardian scanning
