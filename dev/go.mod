@@ -32,7 +32,7 @@ require (
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.7.0 // indirect
 	go.uber.org/zap v1.19.1
-	google.golang.org/grpc v1.53.0 // indirect
+	google.golang.org/grpc v1.56.3 // indirect
 	gopkg.in/ini.v1 v1.64.0 // indirect
 	gorm.io/driver/postgres v1.2.2
 	gorm.io/gorm v1.22.3
