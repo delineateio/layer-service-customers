@@ -7,10 +7,9 @@ require (
 	github.com/avast/retry-go/v3 v3.1.1
 	github.com/cenkalti/backoff v2.2.1+incompatible // indirect
 	github.com/fatih/color v1.13.0 // indirect
-	github.com/gin-contrib/cors v1.3.1
-	github.com/gin-gonic/gin v1.7.7
+	github.com/gin-contrib/cors v1.6.0
+	github.com/gin-gonic/gin v1.9.1
 	github.com/go-openapi/spec v0.20.4 // indirect
-	github.com/go-playground/validator/v10 v10.9.0 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/hashicorp/consul/api v1.11.0
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
@@ -18,7 +17,6 @@ require (
 	github.com/hashicorp/go-immutable-radix v1.3.1 // indirect
 	github.com/hashicorp/golang-lru v0.5.4 // indirect
 	github.com/hashicorp/serf v0.9.6 // indirect
-	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-colorable v0.1.11 // indirect
 	github.com/mitchellh/consulstructure v0.0.0-20190329231841-56fdc4d2da54
